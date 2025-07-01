@@ -6,26 +6,38 @@ from typing import AsyncGenerator
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from loguru import logger
 
 from app.api.endpoints import chat, data_sources, health
 from app.api.websocket import websocket_endpoint
 from app.core.config import settings
+from app.core.llm_factory import LLMFactory
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan manager."""
     # Startup
-    print("🚀 Starting Data Lens API...")
+    logger.info("🚀 Starting Data Lens API...")
 
-    # Initialize services here
-    # app.state.llm_factory = LLMFactory(settings.LLM_CONFIG)
+    # Initialize LLM Factory
+    try:
+        app.state.llm_factory = LLMFactory(settings.LLM_CONFIG)
+        logger.success("✅ LLM Factory initialized successfully")
+        logger.info(f"📋 Available providers: {app.state.llm_factory.get_available_providers()}")
+        logger.info(f"🔧 Specialized tasks: {app.state.llm_factory.get_specialized_tasks()}")
+    except Exception as e:
+        logger.error(f"❌ Failed to initialize LLM Factory: {e}")
+        # Continue without LLM Factory for now
+        app.state.llm_factory = None
+
+    # TODO: Initialize other services
     # app.state.orchestrator = OrchestratorAgent(app.state.llm_factory)
 
     yield
 
     # Shutdown
-    print("📴 Shutting down Data Lens API...")
+    logger.info("📴 Shutting down Data Lens API...")
     # Cleanup resources here
 
 

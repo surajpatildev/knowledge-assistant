@@ -39,7 +39,7 @@ class Settings(BaseSettings):
             "providers": {
                 "primary": {
                     "provider": "openai",
-                    "model": "gpt-4-turbo-preview",
+                    "model": "gpt-4o",
                     "temperature": 0.1,
                     "max_tokens": 4000,
                     "api_key": self.OPENAI_API_KEY,
@@ -47,7 +47,7 @@ class Settings(BaseSettings):
                 "fallback": [
                     {
                         "provider": "anthropic",
-                        "model": "claude-3-sonnet-20240229",
+                        "model": "claude-3-5-sonnet-20241022",
                         "temperature": 0.1,
                         "max_tokens": 4000,
                         "api_key": self.ANTHROPIC_API_KEY,
@@ -56,15 +56,24 @@ class Settings(BaseSettings):
                 "specialized": {
                     "sql_generation": {
                         "provider": "openai",
-                        "model": "gpt-4",
+                        "model": "gpt-4o",
                         "temperature": 0.0,
+                        "max_tokens": 2000,
                         "api_key": self.OPENAI_API_KEY,
                     },
                     "ui_generation": {
                         "provider": "anthropic",
-                        "model": "claude-3-sonnet-20240229",
+                        "model": "claude-3-5-sonnet-20241022",
                         "temperature": 0.7,
+                        "max_tokens": 3000,
                         "api_key": self.ANTHROPIC_API_KEY,
+                    },
+                    "data_analysis": {
+                        "provider": "openai",
+                        "model": "gpt-4o",
+                        "temperature": 0.2,
+                        "max_tokens": 3000,
+                        "api_key": self.OPENAI_API_KEY,
                     },
                 },
             },

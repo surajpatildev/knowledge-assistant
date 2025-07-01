@@ -31,6 +31,7 @@ passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 aiofiles = "^24.1.0"
 httpx = "^0.28.1"
 websockets = "^14.1"
+loguru = "^0.7.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"

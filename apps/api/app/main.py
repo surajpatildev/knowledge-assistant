@@ -17,13 +17,13 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan manager."""
     # Startup
     print("🚀 Starting Data Lens API...")
-    
+
     # Initialize services here
     # app.state.llm_factory = LLMFactory(settings.LLM_CONFIG)
     # app.state.orchestrator = OrchestratorAgent(app.state.llm_factory)
-    
+
     yield
-    
+
     # Shutdown
     print("📴 Shutting down Data Lens API...")
     # Cleanup resources here

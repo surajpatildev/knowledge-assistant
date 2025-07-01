@@ -27,9 +27,7 @@ class Settings(BaseSettings):
         default="postgresql://postgres:password@localhost:5432/data_lens",
         description="Database URL",
     )
-    REDIS_URL: str = Field(
-        default="redis://localhost:6379", description="Redis URL"
-    )
+    REDIS_URL: str = Field(default="redis://localhost:6379", description="Redis URL")
 
     # LLM Providers
     OPENAI_API_KEY: str = Field(default="", description="OpenAI API key")

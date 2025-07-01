@@ -2,7 +2,7 @@
 
 import json
 import logging
-from typing import Dict, Any
+from typing import Any, Dict
 
 from fastapi import WebSocket, WebSocketDisconnect
 
@@ -41,38 +41,36 @@ async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time communication."""
     session_id = websocket.headers.get("x-session-id", "default")
     await manager.connect(websocket, session_id)
-    
+
     try:
         while True:
             # Receive message
             data = await websocket.receive_text()
             message = json.loads(data)
-            
+
             # Handle different message types
             if message["type"] == "query":
                 # TODO: Process query with orchestrator streaming
-                await websocket.send_json({
-                    "type": "thinking",
-                    "content": "Processing your query..."
-                })
-                
+                await websocket.send_json(
+                    {"type": "thinking", "content": "Processing your query..."}
+                )
+
                 # Simulate processing
-                await websocket.send_json({
-                    "type": "complete",
-                    "data": {"query": message["query"]},
-                    "ui": [],
-                    "suggestions": ["Ask another question"]
-                })
-                
+                await websocket.send_json(
+                    {
+                        "type": "complete",
+                        "data": {"query": message["query"]},
+                        "ui": [],
+                        "suggestions": ["Ask another question"],
+                    }
+                )
+
             elif message["type"] == "ping":
                 await websocket.send_json({"type": "pong"})
-                
+
     except WebSocketDisconnect:
         manager.disconnect(session_id)
     except Exception as e:
         logger.error(f"WebSocket error for {session_id}: {str(e)}")
-        await websocket.send_json({
-            "type": "error",
-            "message": str(e)
-        })
+        await websocket.send_json({"type": "error", "message": str(e)})
         manager.disconnect(session_id)

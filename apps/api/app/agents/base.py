@@ -9,7 +9,7 @@ class BaseAgent(ABC):
 
     def __init__(self, name: str):
         """Initialize the agent.
-        
+
         Args:
             name: The name of the agent
         """
@@ -19,10 +19,10 @@ class BaseAgent(ABC):
     @abstractmethod
     async def process(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process input data and return results.
-        
+
         Args:
             input_data: Input data to process
-            
+
         Returns:
             Processed results
         """
@@ -30,7 +30,7 @@ class BaseAgent(ABC):
 
     def store_memory(self, key: str, value: Any) -> None:
         """Store information in agent memory.
-        
+
         Args:
             key: Memory key
             value: Value to store
@@ -39,10 +39,10 @@ class BaseAgent(ABC):
 
     def get_memory(self, key: str) -> Optional[Any]:
         """Retrieve information from agent memory.
-        
+
         Args:
             key: Memory key
-            
+
         Returns:
             Stored value or None
         """

@@ -1,86 +1,92 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Plus, Database, FileText, Globe, TestTube } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Plus, Database, FileText, Globe, TestTube } from "lucide-react";
 
 interface DataSource {
-  id: string
-  name: string
-  type: 'postgresql' | 'mysql' | 'csv' | 'api'
-  status: 'active' | 'inactive' | 'error'
-  description: string
-  lastConnected: string
+  id: string;
+  name: string;
+  type: "postgresql" | "mysql" | "csv" | "api";
+  status: "active" | "inactive" | "error";
+  description: string;
+  lastConnected: string;
 }
 
 const mockDataSources: DataSource[] = [
   {
-    id: '1',
-    name: 'Main PostgreSQL DB',
-    type: 'postgresql',
-    status: 'active',
-    description: 'Primary application database',
-    lastConnected: '2024-01-15T10:30:00Z'
+    id: "1",
+    name: "Main PostgreSQL DB",
+    type: "postgresql",
+    status: "active",
+    description: "Primary application database",
+    lastConnected: "2024-01-15T10:30:00Z",
   },
   {
-    id: '2',
-    name: 'Sales Analytics',
-    type: 'mysql',
-    status: 'active',
-    description: 'Sales and revenue data',
-    lastConnected: '2024-01-15T09:45:00Z'
+    id: "2",
+    name: "Sales Analytics",
+    type: "mysql",
+    status: "active",
+    description: "Sales and revenue data",
+    lastConnected: "2024-01-15T09:45:00Z",
   },
   {
-    id: '3',
-    name: 'Customer Data Export',
-    type: 'csv',
-    status: 'inactive',
-    description: 'Monthly customer export',
-    lastConnected: '2024-01-10T14:20:00Z'
-  }
-]
+    id: "3",
+    name: "Customer Data Export",
+    type: "csv",
+    status: "inactive",
+    description: "Monthly customer export",
+    lastConnected: "2024-01-10T14:20:00Z",
+  },
+];
 
-const getTypeIcon = (type: DataSource['type']) => {
+const getTypeIcon = (type: DataSource["type"]) => {
   switch (type) {
-    case 'postgresql':
-    case 'mysql':
-      return <Database className="w-4 h-4" />
-    case 'csv':
-      return <FileText className="w-4 h-4" />
-    case 'api':
-      return <Globe className="w-4 h-4" />
+    case "postgresql":
+    case "mysql":
+      return <Database className="w-4 h-4" />;
+    case "csv":
+      return <FileText className="w-4 h-4" />;
+    case "api":
+      return <Globe className="w-4 h-4" />;
     default:
-      return <Database className="w-4 h-4" />
+      return <Database className="w-4 h-4" />;
   }
-}
+};
 
-const getStatusColor = (status: DataSource['status']) => {
+const getStatusColor = (status: DataSource["status"]) => {
   switch (status) {
-    case 'active':
-      return 'bg-green-100 text-green-800'
-    case 'inactive':
-      return 'bg-gray-100 text-gray-800'
-    case 'error':
-      return 'bg-red-100 text-red-800'
+    case "active":
+      return "bg-green-100 text-green-800";
+    case "inactive":
+      return "bg-gray-100 text-gray-800";
+    case "error":
+      return "bg-red-100 text-red-800";
     default:
-      return 'bg-gray-100 text-gray-800'
+      return "bg-gray-100 text-gray-800";
   }
-}
+};
 
 export default function DataSourcesPage() {
-  const [dataSources] = useState<DataSource[]>(mockDataSources)
+  const [dataSources] = useState<DataSource[]>(mockDataSources);
 
   const handleTestConnection = (id: string) => {
     // TODO: Implement actual connection testing
-    console.log('Testing connection for data source:', id)
-  }
+    console.log("Testing connection for data source:", id);
+  };
 
   const handleAddDataSource = () => {
     // TODO: Implement data source creation modal
-    console.log('Add new data source')
-  }
+    console.log("Add new data source");
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -162,5 +168,5 @@ export default function DataSourcesPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

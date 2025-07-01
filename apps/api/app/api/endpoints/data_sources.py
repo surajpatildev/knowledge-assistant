@@ -1,6 +1,6 @@
 """Data source management endpoints."""
 
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -10,6 +10,7 @@ router = APIRouter()
 
 class DataSourceCreate(BaseModel):
     """Data source creation model."""
+
     name: str
     type: str  # postgresql, mysql, csv, api
     connection_string: str
@@ -18,6 +19,7 @@ class DataSourceCreate(BaseModel):
 
 class DataSourceResponse(BaseModel):
     """Data source response model."""
+
     id: str
     name: str
     type: str
@@ -43,7 +45,7 @@ async def create_data_source(data_source: DataSourceCreate) -> DataSourceRespons
         type=data_source.type,
         description=data_source.description,
         status="active",
-        created_at="2024-01-01T00:00:00Z"
+        created_at="2024-01-01T00:00:00Z",
     )
 
 
@@ -54,7 +56,7 @@ async def test_data_source(data_source_id: str) -> Dict[str, Any]:
     return {
         "data_source_id": data_source_id,
         "status": "success",
-        "message": "Connection successful"
+        "message": "Connection successful",
     }
 
 
@@ -62,8 +64,4 @@ async def test_data_source(data_source_id: str) -> Dict[str, Any]:
 async def get_data_source_schema(data_source_id: str) -> Dict[str, Any]:
     """Get schema information for a data source."""
     # TODO: Implement actual schema retrieval
-    return {
-        "data_source_id": data_source_id,
-        "tables": {},
-        "views": {}
-    }
+    return {"data_source_id": data_source_id, "tables": {}, "views": {}}

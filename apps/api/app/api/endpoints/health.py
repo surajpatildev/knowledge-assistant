@@ -21,8 +21,8 @@ async def detailed_health_check() -> Dict[str, Dict[str, str]]:
         "services": {
             "api": "healthy",
             "database": "healthy",  # TODO: Add actual database check
-            "redis": "healthy",     # TODO: Add actual Redis check
-            "llm": "healthy",       # TODO: Add LLM provider check
+            "redis": "healthy",  # TODO: Add actual Redis check
+            "llm": "healthy",  # TODO: Add LLM provider check
         },
         "version": "1.0.0",
     }

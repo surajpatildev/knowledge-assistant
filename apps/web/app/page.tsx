@@ -1,6 +1,12 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function HomePage() {
   return (
@@ -12,7 +18,8 @@ export default function HomePage() {
             Data Lens
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Enterprise Knowledge Assistant - Interact with your data through natural language
+            Enterprise Knowledge Assistant - Interact with your data through
+            natural language
           </p>
         </div>
 
@@ -27,7 +34,8 @@ export default function HomePage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600">
-                No need to write SQL or learn complex query languages. Just ask what you want to know.
+                No need to write SQL or learn complex query languages. Just ask
+                what you want to know.
               </p>
             </CardContent>
           </Card>
@@ -41,7 +49,8 @@ export default function HomePage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600">
-                AI-powered visualizations that adapt to your data and query context.
+                AI-powered visualizations that adapt to your data and query
+                context.
               </p>
             </CardContent>
           </Card>
@@ -55,7 +64,8 @@ export default function HomePage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600">
-                Seamlessly query across multiple data sources in a single conversation.
+                Seamlessly query across multiple data sources in a single
+                conversation.
               </p>
             </CardContent>
           </Card>
@@ -83,5 +93,5 @@ export default function HomePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

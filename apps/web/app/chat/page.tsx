@@ -1,58 +1,59 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Send, Bot, User } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Send, Bot, User } from "lucide-react";
 
 interface Message {
-  id: string
-  content: string
-  role: 'user' | 'assistant'
-  timestamp: Date
+  id: string;
+  content: string;
+  role: "user" | "assistant";
+  timestamp: Date;
 }
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
-      content: 'Hello! I\'m your Data Lens assistant. I can help you query and analyze your data using natural language. What would you like to know?',
-      role: 'assistant',
-      timestamp: new Date()
-    }
-  ])
-  const [input, setInput] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+      id: "1",
+      content:
+        "Hello! I'm your Data Lens assistant. I can help you query and analyze your data using natural language. What would you like to know?",
+      role: "assistant",
+      timestamp: new Date(),
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim()) return
+    e.preventDefault();
+    if (!input.trim()) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       content: input,
-      role: 'user',
-      timestamp: new Date()
-    }
+      role: "user",
+      timestamp: new Date(),
+    };
 
-    setMessages(prev => [...prev, userMessage])
-    setInput('')
-    setIsLoading(true)
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
 
     // TODO: Implement actual API call to backend
     setTimeout(() => {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: `I received your query: "${userMessage.content}". This is a placeholder response. The actual implementation will process your query through the agent system and return meaningful results with visualizations.`,
-        role: 'assistant',
-        timestamp: new Date()
-      }
-      setMessages(prev => [...prev, assistantMessage])
-      setIsLoading(false)
-    }, 1000)
-  }
+        role: "assistant",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+      setIsLoading(false);
+    }, 1000);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -67,16 +68,18 @@ export default function ChatPage() {
                 <div
                   key={message.id}
                   className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
+                    message.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
                   <div
                     className={`flex items-start space-x-2 max-w-[80%] ${
-                      message.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''
+                      message.role === "user"
+                        ? "flex-row-reverse space-x-reverse"
+                        : ""
                     }`}
                   >
                     <div className="flex-shrink-0">
-                      {message.role === 'user' ? (
+                      {message.role === "user" ? (
                         <User className="w-6 h-6 text-blue-600" />
                       ) : (
                         <Bot className="w-6 h-6 text-green-600" />
@@ -84,9 +87,9 @@ export default function ChatPage() {
                     </div>
                     <div
                       className={`rounded-lg px-3 py-2 ${
-                        message.role === 'user'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-900'
+                        message.role === "user"
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-100 text-gray-900"
                       }`}
                     >
                       <p className="text-sm">{message.content}</p>
@@ -104,8 +107,14 @@ export default function ChatPage() {
                     <div className="bg-gray-100 rounded-lg px-3 py-2">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -113,7 +122,7 @@ export default function ChatPage() {
               )}
             </div>
           </ScrollArea>
-          
+
           <form onSubmit={handleSubmit} className="flex space-x-2 mt-4">
             <Input
               value={input}
@@ -129,5 +138,5 @@ export default function ChatPage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

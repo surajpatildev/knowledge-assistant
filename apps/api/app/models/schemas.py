@@ -18,9 +18,7 @@ class QueryRequest(BaseSchema):
 
     query: str = Field(..., description="User query")
     session_id: str = Field(default="default", description="Session identifier")
-    context: Optional[Dict[str, Any]] = Field(
-        default=None, description="Additional context"
-    )
+    context: Optional[Dict[str, Any]] = Field(default=None, description="Additional context")
 
 
 class QueryResponse(BaseSchema):
@@ -28,12 +26,8 @@ class QueryResponse(BaseSchema):
 
     success: bool = Field(..., description="Whether the query was successful")
     data: Dict[str, Any] = Field(default_factory=dict, description="Query results")
-    ui_components: List[Dict[str, Any]] = Field(
-        default_factory=list, description="UI components"
-    )
-    suggestions: List[str] = Field(
-        default_factory=list, description="Follow-up suggestions"
-    )
+    ui_components: List[Dict[str, Any]] = Field(default_factory=list, description="UI components")
+    suggestions: List[str] = Field(default_factory=list, description="Follow-up suggestions")
     error: Optional[str] = Field(default=None, description="Error message if any")
 
 
@@ -43,9 +37,7 @@ class DataSourceCreate(BaseSchema):
     name: str = Field(..., description="Data source name")
     type: str = Field(..., description="Data source type")
     connection_string: str = Field(..., description="Connection string")
-    description: Optional[str] = Field(
-        default="", description="Data source description"
-    )
+    description: Optional[str] = Field(default="", description="Data source description")
 
 
 class DataSourceResponse(BaseSchema):

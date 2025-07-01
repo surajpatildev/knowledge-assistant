@@ -26,9 +26,7 @@ class OrchestratorAgent(BaseAgent):
         self.agents[agent.name] = agent
         logger.info(f"Registered agent: {agent.name}")
 
-    async def process_stream(
-        self, query: str, session_id: str
-    ) -> AsyncGenerator[Dict[str, Any], None]:
+    async def process_stream(self, query: str, session_id: str) -> AsyncGenerator[Dict[str, Any], None]:
         """Process query and stream results.
 
         Args:
@@ -62,9 +60,7 @@ class OrchestratorAgent(BaseAgent):
                     "query": query,
                     "results": {"message": "Query processed successfully"},
                 },
-                "ui": [
-                    {"type": "text", "content": f"I've processed your query: '{query}'"}
-                ],
+                "ui": [{"type": "text", "content": f"I've processed your query: '{query}'"}],
                 "suggestions": [
                     "Try asking about data trends",
                     "Show me a chart of the results",

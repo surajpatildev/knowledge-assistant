@@ -51,9 +51,7 @@ async def websocket_endpoint(websocket: WebSocket):
             # Handle different message types
             if message["type"] == "query":
                 # TODO: Process query with orchestrator streaming
-                await websocket.send_json(
-                    {"type": "thinking", "content": "Processing your query..."}
-                )
+                await websocket.send_json({"type": "thinking", "content": "Processing your query..."})
 
                 # Simulate processing
                 await websocket.send_json(

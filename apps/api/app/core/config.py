@@ -18,9 +18,7 @@ class Settings(BaseSettings):
     # Application
     DEBUG: bool = Field(default=False, description="Debug mode")
     SECRET_KEY: str = Field(default="dev-secret-key", description="Secret key")
-    ALLOWED_ORIGINS: List[str] = Field(
-        default=["http://localhost:3000"], description="CORS allowed origins"
-    )
+    ALLOWED_ORIGINS: List[str] = Field(default=["http://localhost:3000"], description="CORS allowed origins")
 
     # Database
     DATABASE_URL: str = Field(
